@@ -308,8 +308,7 @@ class CaptionThread(QThread):
             dtype_argument = ({'torch_dtype': torch.float16}
                               if device.type == 'cuda' else {})
             model = Blip2ForConditionalGeneration.from_pretrained(
-                BLIP_2_HUGGINGFACE_REPOSITORY_ID, device_map='auto',
-                **dtype_argument)
+                BLIP_2_HUGGINGFACE_REPOSITORY_ID, **dtype_argument)
             self.parent().model = model
             self.parent().model_device_type = device.type
         model.to(device)
